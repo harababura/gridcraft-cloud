@@ -11,6 +11,8 @@ description = "GridCraft desktop app"
 workspace = true
 
 [dependencies]
+# Fork patch: PureQuad Cloud links (purequad-cloud/, vendored).
+purequad-cloud = { path = "../../crates/purequad-cloud" }
 gridcraft-engine = { workspace = true }
 gridcraft-ui-egui = { workspace = true }
 eframe = { workspace = true, features = ["default_fonts", "wgpu", "accesskit", "wayland", "x11", "clipboard"] }
@@ -51,7 +53,8 @@ muda = { version = "0.21", default-features = false }
 # kAEOpenDocuments Apple event, which winit 0.30 doesn't handle (#69). This audited crate (also used
 # by PdfCraft and PhotoCraft) registers the handler (Objective-C interop needs unsafe, which our
 # workspace forbids) behind a safe API. Pinned exactly: review the diff before bumping.
-fmv-macos-events = "=0.1.0"
+# Fork patch: the same crate, vendored with the GetURL event added for PureQuad Cloud links.
+fmv-macos-events = { package = "purequad-macos-events", path = "../../crates/purequad-macos-events" }
 
 # tests/mac_menu_appkit.rs: reads AppKit's menu bar back. Already in Cargo.lock (muda, winit);
 # pinned exactly to the same versions.

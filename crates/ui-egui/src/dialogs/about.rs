@@ -15,12 +15,14 @@ pub(super) fn about(ui: &mut egui::Ui, d: &mut Dialog) {
         "Contributors" => crate::credits::contributors_ui(ui),
         "Models" => crate::credits::models_ui(ui),
         _ => {
-            ui.heading("GridCraft");
+            ui.heading(crate::purequad::APP_NAME);
             ui.label(format!("Version {}", env!("CARGO_PKG_VERSION")));
             ui.add_space(4.0);
-            ui.label("A clean-room, open-source, Rust-native spreadsheet. Part of ArtCraft.");
-            ui.hyperlink_to("getartcraft.com/apps/gridcraft", "https://getartcraft.com/apps/gridcraft");
-            ui.hyperlink_to("Join the ArtCraft Discord", "https://discord.gg/artcraft");
+            // Fork patch: PureQuad build. The brand terms allow saying, in plain text, what it is based on.
+            ui.label("Based on GridCraft by the ArtCraft team.");
+            ui.hyperlink_to("PureQuad Cloud", crate::purequad::CLOUD_URL);
+            ui.hyperlink_to("Help and other apps", crate::purequad::HELP_URL);
+            ui.hyperlink_to("Source code", crate::purequad::SOURCE_URL);
         }
     }
 }

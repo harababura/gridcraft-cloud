@@ -9,6 +9,8 @@ description = "GridCraft egui frontend (Excel-style UI); swappable — nothing b
 workspace = true
 
 [dependencies]
+# Fork patch: the PureQuad Cloud buttons ask the app's cloud window (requests only, no network).
+purequad-cloud = { path = "../purequad-cloud", default-features = false }
 # The shared capture slot (`craft_ui::capture`) comes from the one craft-libs revision every
 # craft-libs dependency uses (see the root Cargo.toml).
 craft-ui = { git = "https://github.com/storytold/craft-libs", rev = "c5a1cbfb5f9049f9270955caffb5bee5997aebf7" }

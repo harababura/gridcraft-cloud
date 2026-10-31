@@ -184,8 +184,9 @@ fn tree() -> Vec<(&'static str, Vec<Entry>)> {
                 ("Check for Updates…", "app.checkForUpdates", None),
                 ("Agent Control (MCP)…", "dialog:agents", None),
                 ("Contributors…", "dialog:about:Contributors", None),
-                ("GridCraft on getartcraft.com", "url:https://getartcraft.com/apps/gridcraft", None),
-                ("Join the ArtCraft Discord…", "url:https://discord.gg/artcraft", None),
+                // Fork patch: PureQuad links instead of the upstream community ones.
+                ("PureQuad Cloud", "url:https://cloud.purequad.com/fisiere", None),
+                ("Help and other apps", "url:https://cloud.purequad.com/aplicatii", None),
             ],
         ),
     ]
@@ -222,8 +223,8 @@ fn select_theme(app: &mut SheetApp, id: &str) -> bool {
 impl NativeMenu {
     pub fn install(ctx: &egui::Context) -> NativeMenu {
         let menu = Menu::new();
-        let app_menu = Submenu::new("GridCraft", true);
-        let about = MenuItem::with_id("dialog:about", "About GridCraft", true, None);
+        let app_menu = Submenu::new(gridcraft_ui_egui::purequad::APP_NAME, true);
+        let about = MenuItem::with_id("dialog:about", "About PureQuad Sheets", true, None);
         let _ = app_menu.append_items(&[
             &about,
             &PredefinedMenuItem::separator(),
@@ -233,7 +234,7 @@ impl NativeMenu {
             &PredefinedMenuItem::hide_others(None),
             &PredefinedMenuItem::show_all(None),
             &PredefinedMenuItem::separator(),
-            &MenuItem::with_id(QUIT, "Quit GridCraft", true, Accelerator::from_str("CMD+Q").ok()),
+            &MenuItem::with_id(QUIT, "Quit PureQuad Sheets", true, Accelerator::from_str("CMD+Q").ok()),
         ]);
         let _ = menu.append(&app_menu);
         let mut theme_items = Vec::new();

@@ -807,6 +807,35 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "c2459377285ad874054d797f3ccebf984978aa39129f6eafde5cdc8315b612f8"
 
 [[package]]
+name = "cookie"
+version = "0.18.2"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "1a373e3602691c3cdea496d2f0ee5935151e6168fe87739483c463db1b2f2f87"
+dependencies = [
+ "percent-encoding",
+ "time",
+ "version_check",
+]
+
+[[package]]
+name = "cookie_store"
+version = "0.22.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "15b2c103cf610ec6cae3da84a766285b42fd16aad564758459e6ecf128c75206"
+dependencies = [
+ "cookie",
+ "document-features",
+ "idna",
+ "indexmap",
+ "log",
+ "serde",
+ "serde_derive",
+ "serde_json",
+ "time",
+ "url",
+]
+
+[[package]]
 name = "core-foundation"
 version = "0.9.4"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -1595,17 +1624,6 @@ dependencies = [
 ]
 
 [[package]]
-name = "fmv-macos-events"
-version = "0.1.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "90642cf66dde7f205dc8b42dfe57b47d0f3a29f571b832742883ef512e23fe55"
-dependencies = [
- "objc2 0.6.5",
- "objc2-app-kit 0.3.2",
- "objc2-foundation 0.3.2",
-]
-
-[[package]]
 name = "fnv"
 version = "1.0.7"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -1945,7 +1963,6 @@ dependencies = [
  "craft-update",
  "eframe",
  "egui",
- "fmv-macos-events",
  "getrandom 0.4.3",
  "gridcraft-engine",
  "gridcraft-mcp",
@@ -1956,6 +1973,8 @@ dependencies = [
  "objc2 0.6.5",
  "objc2-app-kit 0.3.2",
  "pollster 1.0.1",
+ "purequad-cloud",
+ "purequad-macos-events",
  "rfd",
  "serde_json",
  "winit",
@@ -2094,6 +2113,7 @@ dependencies = [
  "gridcraft-xlsx",
  "image",
  "log",
+ "purequad-cloud",
  "serde",
  "serde_json",
  "skrifa",
@@ -3793,6 +3813,26 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "3d595e54a326bc53c1c197b32d295e14b169e3cfeaa8dc82b529f947fba6bcf5"
 
 [[package]]
+name = "purequad-cloud"
+version = "0.1.0"
+dependencies = [
+ "log",
+ "serde",
+ "serde_json",
+ "ureq",
+ "url",
+]
+
+[[package]]
+name = "purequad-macos-events"
+version = "0.1.0"
+dependencies = [
+ "objc2 0.6.5",
+ "objc2-app-kit 0.3.2",
+ "objc2-foundation 0.3.2",
+]
+
+[[package]]
 name = "pxfm"
 version = "0.1.30"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -5383,14 +5423,18 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "cde93ff05758a36a851a398a772b0b79a82fbe3c186a46f2696baaeaf84c966b"
 dependencies = [
  "base64 0.23.1",
+ "cookie_store",
  "flate2",
  "log",
  "percent-encoding",
  "rustls",
  "rustls-pki-types",
  "rustls-platform-verifier",
+ "serde",
+ "serde_json",
  "ureq-proto",
  "utf8-zero",
+ "webpki-roots",
 ]
 
 [[package]]
@@ -5739,6 +5783,15 @@ name = "webpki-root-certs"
 version = "1.0.9"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "b96554aa2acc8ccdb7e1c9a58a7a68dd5d13bccc69cd124cb09406db612a1c9b"
+dependencies = [
+ "rustls-pki-types",
+]
+
+[[package]]
+name = "webpki-roots"
+version = "1.0.11"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "f5f280bbb2b287bc8e7de7e3852945a0ff50d1bbcb5ed42b6c7a568c546df171"
 dependencies = [
  "rustls-pki-types",
 ]

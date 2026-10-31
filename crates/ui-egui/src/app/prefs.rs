@@ -51,17 +51,21 @@ impl SheetApp {
     /// Look for a newer release once, in the background, as the desktop app starts (a no-op on the
     /// web). A found release opens the update prompt; nothing is shown when GridCraft is current.
     pub fn start_update_check(&mut self) {
-        #[cfg(not(target_arch = "wasm32"))]
-        updates_ui::start(self, false);
+        // Fork patch: the PureQuad build doesn't look for upstream releases; new versions are
+        // published in PureQuad Cloud › Aplicații (see `check_for_updates`).
+        let _ = updates_ui::start;
     }
 
     /// Help ▸ Check for Updates…: look now, and say so when GridCraft is up to date or the check fails.
     pub fn check_for_updates(&mut self) {
+        // Fork patch: open PureQuad Cloud › Aplicații, where the kits are published.
         #[cfg(not(target_arch = "wasm32"))]
-        updates_ui::start(self, true);
+        if let Some(open) = &self.services.open_url {
+            open(crate::purequad::HELP_URL);
+        }
         #[cfg(target_arch = "wasm32")]
         {
-            self.message = Some(("GridCraft".into(), "The web version is always the latest release.".into()));
+            self.message = Some((crate::purequad::APP_NAME.into(), "The web version is always the latest release.".into()));
         }
     }
 }

@@ -16,6 +16,7 @@ pub const UPDATE_APP: craft_update::app::App = craft_update::app::App {
 };
 
 pub mod backstage;
+pub mod purequad;
 mod border_preview;
 mod cell_pictures;
 pub mod chartview;

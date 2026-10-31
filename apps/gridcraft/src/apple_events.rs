@@ -35,7 +35,7 @@ impl AppleEvents {
 }
 
 /// Open the documents and act on the quit requests that arrived since the last frame.
-pub fn poll(inbox: &Inbox, app: &mut SheetApp, ctx: &egui::Context) {
+pub fn poll(inbox: &Inbox, app: &mut SheetApp, cloud: &mut crate::cloud_links::CloudLinks, ctx: &egui::Context) {
     for e in inbox.drain() {
         match e {
             Event::Open(paths) => {
@@ -44,6 +44,8 @@ pub fn poll(inbox: &Inbox, app: &mut SheetApp, ctx: &egui::Context) {
                 }
             }
             // Quit from the Dock or the system: each unsaved workbook is asked about in its window.
+            // Fork patch: a PureQuad Cloud link (`purequad-sheets://open?…`).
+            Event::Url(url) => cloud.start(&url),
             Event::Quit => app.request_quit(ctx),
         }
     }

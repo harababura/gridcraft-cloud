@@ -117,6 +117,10 @@ pub fn title_bar(app: &mut SheetApp, ui: &mut Ui) {
                 if ui.button("Print…").clicked() {
                     app.print_now(json!({}));
                 }
+                // Fork patch: PureQuad Cloud.
+                if app.services.pick_save.is_some() && ui.button(app.ui.language.tr("Open from PureQuad Cloud…")).clicked() {
+                    crate::purequad::browse(ui.ctx());
+                }
             });
             let left_end = ui.min_rect().right();
             let right = ui.with_layout(egui::Layout::right_to_left(egui::Align::Center), |ui| {
@@ -128,6 +132,11 @@ pub fn title_bar(app: &mut SheetApp, ui: &mut Ui) {
                 }
                 let share = small_button(ui, Icon::Share, "Share", "Share: export or save a copy", true);
                 egui::Popup::menu(&share).show(|ui| {
+                    // Fork patch: a copy in PureQuad Cloud, which every later save updates.
+                    if app.services.pick_save.is_some() && ui.button(app.ui.language.tr("Save to PureQuad Cloud…")).clicked() {
+                        let ctx = ui.ctx().clone();
+                        crate::purequad::save_to_cloud(app, &ctx);
+                    }
                     if ui.button("Export as PDF…").clicked() {
                         app.run_or_alert("file.exportPdf", json!({}));
                     }

@@ -31,13 +31,13 @@
     <string>zh-Hans</string>
   </array>
   <key>CFBundleDisplayName</key>
-  <string>GridCraft</string>
+  <string>PureQuad Sheets</string>
   <key>CFBundleName</key>
-  <string>GridCraft</string>
+  <string>PureQuad Sheets</string>
   <key>CFBundleExecutable</key>
   <string>GridCraft</string>
   <key>CFBundleIdentifier</key>
-  <string>ai.storyteller.gridcraft</string>
+  <string>ro.purequad.sheets</string>
   <key>CFBundleInfoDictionaryVersion</key>
   <string>6.0</string>
   <key>CFBundlePackageType</key>
@@ -67,7 +67,7 @@
   <key>NSRequiresAquaSystemAppearance</key>
   <false/>
   <key>NSHumanReadableCopyright</key>
-  <string>Copyright © the GridCraft authors. MIT OR Apache-2.0.</string>
+  <string>PureQuad. Based on GridCraft (MIT OR Apache-2.0).</string>
 
   <!-- Files GridCraft opens. Rank Alternate: it's offered under "Open With" without taking
        over the default app (Numbers, another spreadsheet) for these types. -->
@@ -211,5 +211,16 @@
     </dict>
   </array>
 
+  <key>CFBundleURLTypes</key>
+  <array>
+    <dict>
+      <key>CFBundleURLName</key>
+      <string>PureQuad Sheets PureQuad Cloud link</string>
+      <key>CFBundleURLSchemes</key>
+      <array>
+        <string>purequad-sheets</string>
+      </array>
+    </dict>
+  </array>
 </dict>
 </plist>

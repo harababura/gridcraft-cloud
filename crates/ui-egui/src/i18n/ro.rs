@@ -346,6 +346,9 @@ pub(super) fn translate(text: &str) -> Option<&'static str> {
         "Info" => "Informații",
         "Save" => "Salvare",
         "Save As" => "Salvare ca",
+        // Fork patch: PureQuad Cloud.
+        "Open from PureQuad Cloud…" => "Deschide din PureQuad Cloud…",
+        "Save to PureQuad Cloud…" => "Salvează în PureQuad Cloud…",
         "Export" => "Exportare",
         "Close" => "Închidere",
         "Options" => "Opțiuni",

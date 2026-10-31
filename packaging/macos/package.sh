@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Build, sign and (optionally) notarize the macOS release artifacts:
 #
-#   $DIST/gridcraft-<version>-macos-<arch>.dmg          GridCraft.app on a drag-to-Applications DMG
+#   $DIST/gridcraft-<version>-macos-<arch>.dmg          PureQuad Sheets.app on a drag-to-Applications DMG
 #   $DIST/gridcraft-cli-<version>-macos-<arch>.zip      the headless CLI
 #
 # Usage: packaging/macos/package.sh [--arch universal|aarch64|x86_64] [--skip-build]
@@ -39,7 +39,7 @@ export MACOSX_DEPLOYMENT_TARGET=11.0
 IDENTITY="${MACOS_SIGN_IDENTITY:--}"
 SHORT_VERSION="${VERSION%%-*}"
 WORK="$CARGO_TARGET_DIR/macos-package"
-APP="$WORK/GridCraft.app"
+APP="$WORK/PureQuad Sheets.app"
 DMG="$DIST/gridcraft-$VERSION-macos-$ARCH.dmg"
 CLI_ZIP="$DIST/gridcraft-cli-$VERSION-macos-$ARCH.zip"
 
@@ -111,7 +111,7 @@ notarize() {
   fi
 }
 
-# ---- GridCraft.app ----------------------------------------------------------------------------
+# ---- PureQuad Sheets.app ----------------------------------------------------------------------------
 echo "==> assembling $APP"
 mkdir -p "$APP/Contents/MacOS" "$APP/Contents/Resources"
 # Executable and icon carry the display name (CFBundleExecutable / CFBundleIconFile).
@@ -145,7 +145,7 @@ fi
 echo "==> building $DMG"
 STAGE="$WORK/dmg"
 mkdir -p "$STAGE"
-ditto "$APP" "$STAGE/GridCraft.app"
+ditto "$APP" "$STAGE/PureQuad Sheets.app"
 ln -s /Applications "$STAGE/Applications"
 # Finder window layout: background, icon size and positions (packaging/macos/dmg/README.md).
 mkdir -p "$STAGE/.background"

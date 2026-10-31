@@ -11,6 +11,7 @@
 
 #[cfg(target_os = "macos")]
 mod apple_events;
+mod cloud_links;
 mod control_server;
 #[cfg(any(target_os = "windows", test))]
 mod graphics;
@@ -28,19 +29,32 @@ use gridcraft_ui_egui::{Services, SheetApp};
 use serde_json::json;
 
 /// The app, its native window per workbook window, and (macOS) the menu bar and Finder events.
-struct App(SheetApp, DocWindows, #[cfg(target_os = "macos")] Option<native_menu::NativeMenu>, #[cfg(target_os = "macos")] fmv_macos_events::Inbox);
+struct App(
+    SheetApp,
+    DocWindows,
+    cloud_links::CloudLinks,
+    #[cfg(target_os = "macos")] Option<native_menu::NativeMenu>,
+    #[cfg(target_os = "macos")] fmv_macos_events::Inbox,
+);
 
 impl eframe::App for App {
     fn logic(&mut self, ctx: &egui::Context, _frame: &mut eframe::Frame) {
         #[cfg(target_os = "macos")]
         {
-            if self.2.is_none() && std::env::var_os("GRIDCRAFT_NO_NATIVE_MENU").is_none() {
-                self.2 = Some(native_menu::NativeMenu::install(ctx));
+            if self.3.is_none() && std::env::var_os("GRIDCRAFT_NO_NATIVE_MENU").is_none() {
+                self.3 = Some(native_menu::NativeMenu::install(ctx));
             }
-            if let Some(m) = &mut self.2 {
+            if let Some(m) = &mut self.3 {
                 m.poll(&mut self.0, ctx, self.1.focused_viewport());
             }
-            apple_events::poll(&self.3, &mut self.0, ctx);
+            apple_events::poll(&self.4, &mut self.0, &mut self.2, ctx);
+        }
+        // Fork patch: PureQuad Cloud working copies open like files; sync news goes to the toast.
+        for action in self.2.poll(ctx) {
+            match action {
+                cloud_links::Action::Open(path) => self.0.open_path(&path.to_string_lossy()),
+                cloud_links::Action::Status(s) => gridcraft_ui_egui::purequad::cloud_status(&mut self.0, s),
+            }
         }
         self.0.logic(ctx);
         self.1.logic(&mut self.0, ctx);
@@ -79,9 +93,9 @@ impl eframe::App for App {
 
 fn config_dir() -> Option<std::path::PathBuf> {
     if cfg!(target_os = "macos") {
-        std::env::var_os("HOME").map(|h| std::path::PathBuf::from(h).join("Library/Application Support/GridCraft"))
+        std::env::var_os("HOME").map(|h| std::path::PathBuf::from(h).join("Library/Application Support/PureQuad Sheets"))
     } else if cfg!(windows) {
-        std::env::var_os("APPDATA").map(|a| std::path::PathBuf::from(a).join("GridCraft"))
+        std::env::var_os("APPDATA").map(|a| std::path::PathBuf::from(a).join("PureQuad Sheets"))
     } else {
         std::env::var_os("XDG_CONFIG_HOME")
             .map(std::path::PathBuf::from)
@@ -324,11 +338,17 @@ fn main() -> eframe::Result<()> {
     // Files named on the command line (a double-click on Windows and Linux) open as File › Open
     // opens them: a password-protected one asks for its password, and errors are shown, not
     // only logged. Each replaces the untouched blank Book1, as a file opened from Finder does.
+    // Fork patch: PureQuad Cloud links among the arguments open from the cloud.
+    let mut cloud = cloud_links::CloudLinks::new(gridcraft_ui_egui::purequad::APP_NAME);
+    for f in files.iter().filter(|f| cloud_links::is_link(f)) {
+        cloud.start(f);
+    }
+    files.retain(|f| !cloud_links::is_link(f));
     for f in &files {
         app.open_path(f);
     }
     let mut viewport = egui::ViewportBuilder::default()
-        .with_title("GridCraft")
+        .with_title(gridcraft_ui_egui::purequad::APP_NAME)
         .with_inner_size([1440.0, 900.0])
         .with_min_inner_size([640.0, 420.0])
         .with_app_id("ai.storyteller.gridcraft")
@@ -376,7 +396,7 @@ fn main() -> eframe::Result<()> {
     let pending = std::cell::Cell::new(Some(app));
     let run = |options: eframe::NativeOptions| {
         eframe::run_native(
-            "GridCraft",
+            gridcraft_ui_egui::purequad::APP_NAME,
             options,
             Box::new(|cc| {
                 let Some(mut app) = pending.take() else {
@@ -393,6 +413,7 @@ fn main() -> eframe::Result<()> {
                 Ok(Box::new(App(
                     app,
                     windows,
+                    cloud,
                     #[cfg(target_os = "macos")]
                     None,
                     #[cfg(target_os = "macos")]
