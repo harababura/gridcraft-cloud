@@ -393,13 +393,14 @@ fn main() -> eframe::Result<()> {
     let apple_events = &apple_events;
     // The app waits here until a start gets as far as creating it; a start that fails before
     // (no graphics adapter, device or surface) leaves it here for the next attempt.
-    let pending = std::cell::Cell::new(Some(app));
+    // The cloud links travel with the app so a retried run (Windows graphics fallback) still has them.
+    let pending = std::cell::Cell::new(Some((app, cloud)));
     let run = |options: eframe::NativeOptions| {
         eframe::run_native(
             gridcraft_ui_egui::purequad::APP_NAME,
             options,
             Box::new(|cc| {
-                let Some(mut app) = pending.take() else {
+                let Some((mut app, cloud)) = pending.take() else {
                     return Err("the app was already created".into());
                 };
                 SheetApp::setup_context_for_language(&cc.egui_ctx, app.ui.dark, app.ui.language);
