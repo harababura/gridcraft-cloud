@@ -53,6 +53,7 @@ impl SheetApp {
     pub fn start_update_check(&mut self) {
         // Fork patch: the PureQuad build doesn't look for upstream releases; new versions are
         // published in PureQuad Cloud › Aplicații (see `check_for_updates`).
+        #[cfg(not(target_arch = "wasm32"))]
         let _ = updates_ui::start;
     }
 

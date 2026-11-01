@@ -904,7 +904,7 @@ pub(super) fn translate(text: &str) -> Option<&'static str> {
         "Hide Sheet" => "Ocultar Planilha",
         "Hierarchy & more" => "Hierarquia e mais",
         "Highlighter" => "Marca-texto",
-        "How agents drive GridCraft (MCP / control channel)" => "Como os agentes controlam o GridCraft (MCP / canal de controle)",
+        "How agents drive PureQuad Sheets (MCP / control channel)" => "Como os agentes controlam o PureQuad Sheets (MCP / canal de controle)",
         "Import a text or CSV file" => "Importar um arquivo de texto ou CSV",
         "Insert Function" => "Inserir Função",
         "Insert Function (⇧F3)" => "Inserir Função (⇧F3)",

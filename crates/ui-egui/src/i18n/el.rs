@@ -476,7 +476,7 @@ pub(super) fn translate(text: &str) -> Option<&'static str> {
         "Hide Sheet" => "Απόκρυψη φύλλου",
         "Hierarchy & more" => "Ιεραρχία και άλλα",
         "Highlighter" => "Εργαλείο επισήμανσης",
-        "How agents drive GridCraft (MCP / control channel)" => "Πώς οι πράκτορες χειρίζονται το GridCraft (MCP / κανάλι ελέγχου)",
+        "How agents drive PureQuad Sheets (MCP / control channel)" => "Πώς οι πράκτορες χειρίζονται το PureQuad Sheets (MCP / κανάλι ελέγχου)",
         "Import a text or CSV file" => "Εισαγωγή αρχείου κειμένου ή CSV",
         "Insert\nSlicer" => "Εισαγωγή\nαναλυτή",
         "Insert Function (⇧F3)" => "Εισαγωγή συνάρτησης (⇧F3)",
