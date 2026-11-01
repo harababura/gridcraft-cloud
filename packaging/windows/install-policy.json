@@ -1,7 +1,7 @@
 {
   "id": "gridcraft",
-  "name": "GridCraft",
-  "upgradeCode": "5511327B-F305-41BE-92D0-EB84944E7C4D",
+  "name": "PureQuad Sheets",
+  "upgradeCode": "4CE77D46-20B4-4642-9934-FA2077539D7A",
   "sources": [
     "gridcraft.wxs"
   ],
@@ -21,127 +21,127 @@
     ],
     [
       "-1",
-      "Software\\Classes\\GridCraft.Workbook",
+      "Software\\Classes\\PureQuadSheets.Workbook",
       "",
-      "GridCraft Workbook"
+      "PureQuad Sheets Workbook"
     ],
     [
       "-1",
-      "Software\\Classes\\GridCraft.Workbook\\DefaultIcon",
+      "Software\\Classes\\PureQuadSheets.Workbook\\DefaultIcon",
       "",
       "\"[#GridcraftExe]\",0"
     ],
     [
       "-1",
-      "Software\\Classes\\GridCraft.Workbook\\shell\\open\\command",
+      "Software\\Classes\\PureQuadSheets.Workbook\\shell\\open\\command",
       "",
       "\"[#GridcraftExe]\" \"%1\""
     ],
     [
       "-1",
-      "Software\\Classes\\GridCraft.TextData",
+      "Software\\Classes\\PureQuadSheets.TextData",
       "",
-      "GridCraft Text Data"
+      "PureQuad Sheets Text Data"
     ],
     [
       "-1",
-      "Software\\Classes\\GridCraft.TextData\\DefaultIcon",
+      "Software\\Classes\\PureQuadSheets.TextData\\DefaultIcon",
       "",
       "\"[#GridcraftExe]\",0"
     ],
     [
       "-1",
-      "Software\\Classes\\GridCraft.TextData\\shell\\open\\command",
+      "Software\\Classes\\PureQuadSheets.TextData\\shell\\open\\command",
       "",
       "\"[#GridcraftExe]\" \"%1\""
     ],
     [
       "-1",
       "Software\\Classes\\.xlsx\\OpenWithProgids",
-      "GridCraft.Workbook",
-      "GridCraft.Workbook"
+      "PureQuadSheets.Workbook",
+      "PureQuadSheets.Workbook"
     ],
     [
       "-1",
       "Software\\Classes\\.xlsm\\OpenWithProgids",
-      "GridCraft.Workbook",
-      "GridCraft.Workbook"
+      "PureQuadSheets.Workbook",
+      "PureQuadSheets.Workbook"
     ],
     [
       "-1",
       "Software\\Classes\\.xlsb\\OpenWithProgids",
-      "GridCraft.Workbook",
-      "GridCraft.Workbook"
+      "PureQuadSheets.Workbook",
+      "PureQuadSheets.Workbook"
     ],
     [
       "-1",
       "Software\\Classes\\.ods\\OpenWithProgids",
-      "GridCraft.Workbook",
-      "GridCraft.Workbook"
+      "PureQuadSheets.Workbook",
+      "PureQuadSheets.Workbook"
     ],
     [
       "-1",
       "Software\\Classes\\.csv\\OpenWithProgids",
-      "GridCraft.TextData",
-      "GridCraft.TextData"
+      "PureQuadSheets.TextData",
+      "PureQuadSheets.TextData"
     ],
     [
       "-1",
       "Software\\Classes\\.tsv\\OpenWithProgids",
-      "GridCraft.TextData",
-      "GridCraft.TextData"
+      "PureQuadSheets.TextData",
+      "PureQuadSheets.TextData"
     ],
     [
       "-1",
-      "Software\\GridCraft\\Capabilities",
+      "Software\\PureQuad Sheets\\Capabilities",
       "ApplicationName",
-      "GridCraft"
+      "PureQuad Sheets"
     ],
     [
       "-1",
-      "Software\\GridCraft\\Capabilities",
+      "Software\\PureQuad Sheets\\Capabilities",
       "ApplicationDescription",
       "Open-source spreadsheet for .xlsx, CSV and TSV files"
     ],
     [
       "-1",
-      "Software\\GridCraft\\Capabilities\\FileAssociations",
+      "Software\\PureQuad Sheets\\Capabilities\\FileAssociations",
       ".xlsx",
-      "GridCraft.Workbook"
+      "PureQuadSheets.Workbook"
     ],
     [
       "-1",
-      "Software\\GridCraft\\Capabilities\\FileAssociations",
+      "Software\\PureQuad Sheets\\Capabilities\\FileAssociations",
       ".xlsm",
-      "GridCraft.Workbook"
+      "PureQuadSheets.Workbook"
     ],
     [
       "-1",
-      "Software\\GridCraft\\Capabilities\\FileAssociations",
+      "Software\\PureQuad Sheets\\Capabilities\\FileAssociations",
       ".csv",
-      "GridCraft.TextData"
+      "PureQuadSheets.TextData"
     ],
     [
       "-1",
-      "Software\\GridCraft\\Capabilities\\FileAssociations",
+      "Software\\PureQuad Sheets\\Capabilities\\FileAssociations",
       ".tsv",
-      "GridCraft.TextData"
+      "PureQuadSheets.TextData"
     ],
     [
       "-1",
       "Software\\RegisteredApplications",
-      "GridCraft",
-      "Software\\GridCraft\\Capabilities"
+      "PureQuad Sheets",
+      "Software\\PureQuad Sheets\\Capabilities"
     ],
     [
       "-1",
-      "Software\\GridCraft\\Installer",
+      "Software\\PureQuad Sheets\\Installer",
       "DesktopShortcut",
       "[DESKTOPSHORTCUT]"
     ],
     [
       "-1",
-      "Software\\GridCraft\\Installer",
+      "Software\\PureQuad Sheets\\Installer",
       "DesktopShortcutComponent",
       "#1"
     ]
